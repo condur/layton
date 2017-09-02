@@ -1,16 +1,24 @@
 (ns layton.routes
   (:require
-    [bidi.ring :refer [make-handler]]
-    [ring.util.response :as res]))
+    [yada.yada :as yada]
+    [bidi.ring :refer [make-handler]]))
 
-(defn index-handler
-  [request]
-  (res/response "Hello World"))
+(def index-resource
+  (yada/resource
+    {:produces
+      {:media-type "text/plain"}
+     :methods
+      {:get
+        {:response (fn [ctx] "Hello World from Yada!")}}}))
 
-(defn not-found-handler
-  [request]
-  (res/not-found "Page not found"))
+(def not-found-resource
+  (yada/resource
+    {:produces
+      {:media-type "text/plain"}
+     :methods
+      {:get
+        {:response (fn [ctx] "Not found")}}}))
 
 (def app-routes
-  (make-handler ["/" [["" index-handler]
-                      [true not-found-handler]]]))
+  (make-handler ["/" [["" index-resource]
+                      [true not-found-resource]]]))
