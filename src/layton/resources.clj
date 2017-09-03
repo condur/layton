@@ -1,9 +1,7 @@
 (ns layton.resources
  (:require
     [yada.yada :as yada]
-    [layton.responses :refer :all]
-    [layton.transport-for-london :refer [get-bike-points]]
-    [cheshire.core :as json]))
+    [layton.responses :refer :all]))
 
 (def index-resource
   (yada/resource
@@ -34,9 +32,4 @@
       {:get
         {:produces "application/json"
          :parameters {:query {:lat String :lon String :radius String}}
-         :response (fn [ctx]
-                      (let [latitude (get-in ctx [:parameters :query :lat])
-                            longitude (get-in ctx [:parameters :query :lon])
-                            radius (get-in ctx [:parameters :query :radius])
-                            bike-points (get-bike-points latitude longitude radius)]
-                        (json/generate-string bike-points)))}}}))
+         :response bike-point-response}}}))

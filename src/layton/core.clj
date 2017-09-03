@@ -1,4 +1,5 @@
 (ns layton.core
+  "Main/starting file, define middleware settings using app routes and run the HTTP Server on specific port"
   (:gen-class)
   (:require
     [aleph.http :as http]
@@ -6,7 +7,7 @@
     [layton.routes :refer [app-routes]]))
 
 (def app
-  "Define ring middleware settings using app routes"
+  "Define middleware settings using app routes"
   (-> app-routes))
 
 (defn -main

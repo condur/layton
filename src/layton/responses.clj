@@ -1,7 +1,8 @@
 (ns layton.responses
  (:require
    [hiccup.core :refer [html]]
-   [layton.transport-for-london :refer [get-bike-points]]))
+   [layton.transport-for-london :refer [get-bike-points]]
+   [cheshire.core :as json]))
 
 (defn index-get-response
   [ctx]
@@ -27,3 +28,9 @@
            [:td (get bike-point "bikesCount")]
            [:td (get bike-point "emptyDocks")]
            [:td (get bike-point "totalDocks")]])])))
+
+(defn bike-point-response
+ [ctx]
+ (let [{:keys [lat lon radius]} (get-in ctx [:parameters :query])
+       bike-points (get-bike-points lat lon radius)]
+   (json/generate-string bike-points)))

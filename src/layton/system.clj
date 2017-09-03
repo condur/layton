@@ -1,5 +1,5 @@
 (ns layton.system
- "A wrapper for system getting variables"
+ "A wrapper for getting system variables"
  (:require
    [environ.core :refer [env]]))
 
