@@ -1,28 +1,42 @@
 (ns layton.resources
  (:require
-    [yada.yada :as yada]))
+    [yada.yada :as yada]
+    [layton.responses :refer :all]
+    [layton.transport-for-london :refer [get-bike-points]]
+    [cheshire.core :as json]))
 
 (def index-resource
   (yada/resource
-   {:produces
-    {:media-type "text/plain"}
-    :methods
+   {:methods
      {:get
-       {:response (fn [ctx] "Hello World from Yada!")}}}))
+       {:produces "text/html"
+        :response index-get-response}
+      :post
+       {:consumes "application/x-www-form-urlencoded"
+        :produces "text/html"
+        :parameters {:form {:latitude String :longitude String :radius String}}
+        :response index-post-response}}}))
 
 (def not-found-resource
   (yada/resource
-   {:produces
-     {:media-type "text/plain"}
-    :methods
+   {:methods
      {:get
-       {:response (fn [ctx] "Not found")}}}))
+       {:produces "text/plain"
+        :response (fn [ctx] "Not found")}}}))
 
 (def bike-point-resource
   (yada/resource
-    {:produces
-       {:media-type "text/plain"}
+    {:access-control
+      {:realm "default"
+       :scheme "Basic"
+       :verify (fn [[user password]] nil)}
      :methods
-       {:get
-        {:parameters {:query {:id String}}
-         :response (fn [ctx] (str "Bike point resource: " (get-in ctx [:parameters :query :id])))}}}))
+      {:get
+        {:produces "application/json"
+         :parameters {:query {:lat String :lon String :radius String}}
+         :response (fn [ctx]
+                      (let [latitude (get-in ctx [:parameters :query :lat])
+                            longitude (get-in ctx [:parameters :query :lon])
+                            radius (get-in ctx [:parameters :query :radius])
+                            bike-points (get-bike-points latitude longitude radius)]
+                        (json/generate-string bike-points)))}}}))
