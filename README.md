@@ -13,7 +13,7 @@ It is required to register and get Transport for London credentials, then create
 To run the project excute in the command line:
 
 ```
-lein run
+boot run
 ```
 
 Open the browser: http://localhost:3000/
