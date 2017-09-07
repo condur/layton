@@ -6,7 +6,7 @@
                  [bidi "2.1.2"]
                  [yada/lean "1.2.8"]
                  [hiccup "1.0.5"]
-                 [environ "1.1.0"]
+                 [aero "1.1.2"]
                  [cheshire "5.8.0"]
                  [ring/ring-codec "1.0.1"]])
 

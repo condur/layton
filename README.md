@@ -6,7 +6,7 @@ This is a basic web site built in Clojure that is providing a HTML and a JSON da
 
 ### Credentials
 
-It is required to register and get Transport for London credentials, then create in the root folder the .lein-env file, based on .lein-env.example, and fill the application id and key there.
+It is required to register and get Transport for London credentials, then create in the root folder the .boot-env file, based on .boot-env.example, and fill the application id and key there.
 
 ### Run the application
 

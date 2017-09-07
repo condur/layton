@@ -1,10 +1,13 @@
 (ns layton.system
  "A wrapper for getting system variables"
  (:require
-   [environ.core :refer [env]]))
+   [aero.core :refer [read-config]]))
 
-(def transport-for-london-app-id
-  (env :transport-for-london-app-id))
+(def ^:private system-variables
+  (read-config ".boot-env"))
 
-(def transport-for-london-app-key
-  (env :transport-for-london-app-key))
+(defonce transport-for-london-app-id
+  (get-in system-variables [:transport-for-london :app-id]))
+
+(defonce transport-for-london-app-key
+ (get-in system-variables [:transport-for-london :app-key]))
