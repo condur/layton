@@ -10,4 +10,4 @@
   (get-in system-variables [:transport-for-london :app-id]))
 
 (defonce transport-for-london-app-key
- (get-in system-variables [:transport-for-london :app-key]))
+  (get-in system-variables [:transport-for-london :app-key]))
