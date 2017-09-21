@@ -1,10 +1,10 @@
 
 (set-env!
  :source-paths #{"src"}
- :dependencies '[[org.clojure/clojure "1.9.0-alpha20"]
+ :dependencies '[[org.clojure/clojure "1.9.0-beta1"]
                  [aleph "0.4.3"]
                  [bidi "2.1.2"]
-                 [yada/lean "1.2.8"]
+                 [yada/lean "1.2.9"]
                  [hiccup "1.0.5"]
                  [aero "1.1.2"]
                  [cheshire "5.8.0"]
@@ -39,3 +39,13 @@
   ;; Run the main method from lauton.core
   (with-pass-thru _
     (layton.core/-main)))
+
+(deftask build
+  "Builds an uberjar of this project that can be run with java -jar"
+  []
+  (comp
+   (aot :namespace #{'layton.core})
+   (uber)
+   (jar :file "layton.jar" :main 'layton.core)
+   (sift :include #{#"layton.jar"})
+   (target)))

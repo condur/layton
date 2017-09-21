@@ -10,10 +10,25 @@ It is required to register and get Transport for London credentials, then create
 
 ### Run the application
 
-To run the project excute in the command line:
+To run the project, intall boot (https://github.com/boot-clj/boot) and excute on root folder the command:
 
 ```
 boot run
+```
+
+or create a jar file and run it:
+
+```
+boot build
+java -jar target/layton.jar
+```
+
+or use Doker:
+
+```
+docker build -t layton .
+docker run -it --rm -p 3000:3000 --name layton-app layton
+
 ```
 
 Open the browser: http://localhost:3000/
