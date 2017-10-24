@@ -4,7 +4,7 @@ LABEL layton.maintainer="dima@condur.ca"
 ENV BOOT_VERSION=2.7.2
 ENV BOOT_INSTALL=/usr/local/bin/
 ENV BOOT_CLOJURE_NAME=org.clojure/clojure
-ENV BOOT_CLOJURE_VERSION=1.9.0-beta1
+ENV BOOT_CLOJURE_VERSION=1.9.0-beta2
 
 RUN apk add --update bash openssl && rm -rf /var/cache/apk/*
 

@@ -14,3 +14,4 @@ pom.xml.asc
 .lein-env
 .boot-env
 .nrepl-port
+.nrepl-history
