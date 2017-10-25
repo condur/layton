@@ -45,9 +45,6 @@
     (watch)
     (alt-test :report 'eftest.report.pretty/report)))
 
-;Load the main namespace that is needed for "run" task
-; (require 'layton.core)
-
 (deftask run
   "Profile setup for running the project from command line ... boot run"
   []
