@@ -1,7 +1,7 @@
 (set-env!
  :source-paths #(into % ["src" "test"])
  :resource-paths #{"src"}
- :dependencies '[[org.clojure/clojure "1.9.0-beta2"]
+ :dependencies '[[org.clojure/clojure "1.9.0"]
                  [aleph "0.4.3"]
                  [bidi "2.1.2"]
                  [yada/lean "1.2.9"]
